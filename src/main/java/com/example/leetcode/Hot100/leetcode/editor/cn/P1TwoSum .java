@@ -43,20 +43,52 @@
 //
 // 进阶：你可以想出一个时间复杂度小于 O(n²) 的算法吗？ 
 //
-// Related Topics 数组 哈希表 👍 17924 👎 0
+// Related Topics 数组 哈希表 👍 18408 👎 0
 
 package com.example.leetcode.Hot100.leetcode.editor.cn;
 //java:两数之和
-class P1TwoSum{
-    public static void main(String[] args){
+
+import java.util.Hashtable;
+
+class P1TwoSum {
+    public static void main(String[] args) {
         Solution solution = new P1TwoSum().new Solution();
     }
+
     //leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
-    public int[] twoSum(int[] nums, int target) {
-        return null;
+
+    /**
+     * 暴力解法
+     */
+    class Solution {
+        public int[] twoSum(int[] nums, int target) {
+            for (int i = 0; i < nums.length - 1; i++) {
+                for (int j = i + 1; j < nums.length; j++) {
+                    if (target == nums[i] + nums[j]) {
+                        return new int[]{i, j};
+                    }
+                }
+            }
+            return null;
+        }
     }
-}
+
+    /**
+     * 哈希法
+     */
+    class Solution2 {
+        public int[] twoSum(int[] nums, int target) {
+            Hashtable<Integer, Integer> hashtable = new Hashtable<>();
+            for (int i = 0; i<nums.length; ++i){
+                if (hashtable.containsKey(target-nums[i])){
+                    return new int[]{hashtable.get(target-nums[i]),i};
+                }
+                hashtable.put(nums[i],i);
+            }
+            return null;
+        }
+    }
+
 //leetcode submit region end(Prohibit modification and deletion)
 
 }
